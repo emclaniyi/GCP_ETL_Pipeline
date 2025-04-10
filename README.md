@@ -1,4 +1,4 @@
-# Data Pipeline Ochestration using Airflow, AWS, and Snowflake
+# Data Pipeline and Ochestration using GCP, Kestra, Terraform
 Introducing a Data Pipeline Project that integrates Airflow for Data Orchestration <br>
 
 ### Technologies used

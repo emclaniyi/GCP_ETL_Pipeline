@@ -20,8 +20,6 @@ def main(params):
     table_name = params.table_name
     url = params.url
 
-    # the backup files are gzipped, and it's important to keep the correct extension
-    # for pandas to be able to open the file
     file_name = "output.parquet"
     os.system(f"curl -o {file_name} {url}")
 
@@ -36,7 +34,6 @@ def main(params):
     # Read in chunks
     for batch in parquet_file.iter_batches(batch_size=100000):
         df_chunk = batch.to_pandas()
-        # Process your chunk here
 
         df_chunk.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
         df_chunk.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
