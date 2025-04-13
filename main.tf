@@ -13,7 +13,7 @@ provider "google" {
   region      = var.region
 }
 
-resource "google_storage_bucket" "demo-terra-bucket" {
+resource "google_storage_bucket" "ny-taxi-kestra-etl-bucket" {
   name          = var.gcp_bucket_name
   location      = var.location
   force_destroy = true
@@ -29,7 +29,7 @@ resource "google_storage_bucket" "demo-terra-bucket" {
   }
 }
 
-resource "google_bigquery_dataset" "demo-terra-dataset" {
+resource "google_bigquery_dataset" "ny-taxi-kestra-etl-dataset" {
   dataset_id = var.bq_dataset_name
   location   = var.location
 }

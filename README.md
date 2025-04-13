@@ -9,6 +9,22 @@ Introducing a Data Pipeline Project that integrates Airflow for Data Orchestrati
 - <b>AWS S3</b>: This is a highly scalable object storage service that stores data as objects within buckets. It is commonly used to store and distribute large media files, data backups and static website files. For this project it is used to store data scraped from target website. <br><br>
 - <b>AWS SQS</b>: This is a message queuing service. It exchanges and stores messages between software components. The service adds the messages in a queue. Users or services pick up the messages from the queue. Once processed the messages gets deleted from the queue. In this project it was used to receive notifications from S3 to an SQS queue to be read by the Snowflake server. <br><br>
 
+graph LR
+  Start[Select Year & Month] --> SetLabel[Set Labels]
+  SetLabel --> Extract[Extract CSV Data]
+  Extract -->|Taxi=Yellow| YellowFinalTable[Create Yellow Final Table]:::yellow
+  Extract -->|Taxi=Green| GreenFinalTable[Create Green Final Table]:::green
+  YellowFinalTable --> YellowMonthlyTable[Create Yellow Monthly Table]:::yellow
+  GreenFinalTable --> GreenMonthlyTable[Create Green Monthly Table]:::green
+  YellowMonthlyTable --> YellowCopyIn[Load Data to Monthly Table]:::yellow
+  GreenMonthlyTable --> GreenCopyIn[Load Data to Monthly Table]:::green
+  YellowCopyIn --> YellowMerge[Merge Yellow Data]:::yellow
+  GreenCopyIn --> GreenMerge[Merge Green Data]:::green
+
+  classDef yellow fill:#FFD700,stroke:#000,stroke-width:1px;
+  classDef green fill:#32CD32,stroke:#000,stroke-width:1px;
+
+
 ## Architecture
 <img src="readme_images/architecture.png">
 <br>
