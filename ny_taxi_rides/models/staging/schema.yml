@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: staging
+    database: etl-pipeline-455812
+    schema: ny_taxi_data_yellow_green
+
+    tables:
+      - name: green_tripdata
+      - name: yellow_tripdata
+
