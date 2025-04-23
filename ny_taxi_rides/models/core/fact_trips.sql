@@ -18,7 +18,7 @@ trips_unioned as (
     select * from yellow_tripdata
 ),
 dim_zones as (
-    select * from {{ ref('taxi_zone_lookup') }}
+    select * from {{ ref('dim_zones') }}
     where borough != 'Unknown'
 )
 
@@ -51,7 +51,8 @@ select
     trips_unioned.payment_type, 
     trips_unioned.payment_type_description
 from trips_unioned
-inner join dim_zones as pickup_zone
-on trips_unioned.pickup_locationid = pickup_zone.locationid
-inner join dim_zones as dropoff_zone
-on trips_unioned.pickup_locationid = dropoff_zone.locationid
+LEFT JOIN dim_zones as pickup_zone
+ON trips_unioned.pickup_locationid = pickup_zone.locationid
+
+LEFT JOIN dim_zones as dropoff_zone
+ON trips_unioned.dropoff_locationid  = dropoff_zone.locationid
