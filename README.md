@@ -1,4 +1,4 @@
-# Data Pipeline and Ochestration using GCP, Kestra, Terraform
+# Data Pipeline and Ochestration using GCP, Kestra, Terraform, DBT and visualization with Looker
 Introducing a Data Pipeline Project that integrates Airflow for Data Orchestration <br>
 
 ### Technologies used
@@ -8,7 +8,8 @@ Introducing a Data Pipeline Project that integrates Airflow for Data Orchestrati
 - <b>DBT</b>: This is a message queuing service. It exchanges and stores messages between software components. The service adds the messages in a queue. Users or services pick up the messages from the queue. Once processed the messages gets deleted from the queue. In this project it was used to receive notifications from S3 to an SQS queue to be read by the Snowflake server. <br><br>
 
 
-## Architecture
+
+## DBT Lineage
 <img src="readme_images/architecture.png">
 <br>
 
@@ -17,8 +18,7 @@ Introducing a Data Pipeline Project that integrates Airflow for Data Orchestrati
 <br><br>
 
 ### Datasets
-Data was scraped from <a href="https://rewardsforjustice.net/index/?jsf=jet-engine:rewards-grid&tax=crime-category:1070%2C1071%2C1073%2C1072%2C1074">this website </a> using Scrapy.
-The website does not provide a public API, hence it was reverse engineered to get the endpoint. Postman was then used to analyze endpoint <br><br>
+Data was extracted from <a href="https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page">NYU Taxi dataset </a>
 
 ### Getting Started
 1. Create EC2 Instance (AWS Ubuntu Server) with at least 4gb RAM as requested by airflow installation requirements - preferable t3.medium<br>
@@ -51,14 +51,5 @@ start Airflow server-> Trigger data crawler Dag -> Crawler starts -> loads data 
 3. Snowflake queries can be found <a href="https://github.com/priye-1/airflow_data_pipeline/blob/master/snowflakes_queries.sql">here</a>
 
 
-### References
-<li><a href="https://airflow.apache.org/docs/apache-airflow/1.10.4/_modules/airflow/hooks/S3_hook.html#S3Hook.check_for_key">Airflow S3_hook Source code</a></li>
-<li><a href="https://towardsdatascience.com/apache-airflow-for-data-science-how-to-upload-files-to-amazon-s3-5bdf6fcb1cea">Creating connection id in Airflow</a></li>
-<li><a href="https://docs.snowflake.com/en/user-guide/getting-started-tutorial-log-in">Setting up SnowSQL</a></li>
-<li><a href="https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto-s3#step-2-create-the-iam-role-in-aws">Automating Snowpipe for amazon S3 </a></li>
-<li><a href="https://medium.com/snowflake/how-to-automate-snowpipe-to-load-data-from-aws-s3-to-snowflake-1df7fcfc7a85">How to automate SnowPipe To Load Data From AWS S3 To Snowflake </a></li>
-<li><a href="https://calogica.com/sql/snowflake/2019/04/04/snowpipes.html#8-create-the-snowpipe">Setting up a data pipeline using Snowflake’s Snowpipes in ‘10 Easy Steps</a></li>
-<li><a href="https://docs.astronomer.io/learn/airflow-passing-data-between-tasks?tab=taskflow#example-dag-using-xcoms">Pass data between Airflow tasks</a></li>
-<li><a href="https://scrapeops.io/python-scrapy-playbook/scrapy-save-aws-s3/">Scrapy To AWS S3</a></li>
-<li><a href="https://docs.scrapy.org/en/latest/topics/practices.html#run-scrapy-from-a-script">Run Scrapy from a Script</a></li>
-<li><a href="https://docs.snowflake.com/en/sql-reference/functions/copy_history">Snowflakes Copy History</a></li>
+### Dashboard
+<li><a href="https://lookerstudio.google.com/reporting/b5bae0e4-6b63-4e86-8b60-0a4374d01e45">Dashboard with Looker</a></li>
