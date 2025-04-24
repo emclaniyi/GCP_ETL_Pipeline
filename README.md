@@ -1,6 +1,6 @@
 # 🛠️ Data Pipeline and Orchestration using GCP, Kestra, DBT Cloud & Looker
 
-This project demonstrates a robust data pipeline architecture built with modern tools: data is scraped and stored in Google Cloud Storage, orchestrated with Kestra, transformed in BigQuery via DBT Cloud, and visualized using Looker Studio.
+This project demonstrates a robust data pipeline architecture built with modern tools: data is extracted and stored in Google Cloud Storage, orchestrated with Kestra, transformed in BigQuery via DBT Cloud, and visualized using Looker Studio.
 
 ---
 
